@@ -1,15 +1,20 @@
 package com.company;
 
+import java.io.*;
+
 /*
 *  main AddressBookApplication: purpose is to invoke some methods of the Menu class
 * */
 public class AddressBookApplication {
-    public static void main(String [] args) {
+    public static void main(String [] args) throws IOException{
 
         // instance of AddressBook
-        AddressBook ab = new AddressBook();
-        initAddressBookExercise(ab);
+        //AddressBook ab = new AddressBook();
+        //initAddressBookExercise(ab);
 
+        init("AddressInputDataFile.txt");
+
+       // ab.list();
         //simply invokes static methods of the Menu class
         //Menu.prompt_FirstName();
         //Menu.prompt_LastName();
@@ -19,6 +24,25 @@ public class AddressBookApplication {
         //Menu.prompt_Zip();
         //Menu.prompt_Telephone();
         //Menu.prompt_Email();
+    }
+
+    public static void init(String filename) throws IOException {
+
+        AddressBook ab = new AddressBook();
+        FileReader file_input = new FileReader(filename);
+
+        BufferedReader BR = new BufferedReader(file_input);
+        String line;
+        while((line = BR.readLine()) != null) {
+            AddressEntry newContact = new AddressEntry(line, BR.readLine(), BR.readLine(), BR.readLine(),
+                    BR.readLine(), Integer.valueOf(BR.readLine()).intValue(), BR.readLine(), BR.readLine());
+            ab.add(newContact);
+        }
+
+        BR.close();
+        file_input.close();
+
+        ab.list();
     }
     public static void initAddressBookExercise(AddressBook ab){
 
@@ -34,7 +58,7 @@ public class AddressBookApplication {
         ab.add(contact2);
 
         // list addressEntrys in addressEntryList
-        ab.list();
+       // ab.list();
     }
 }
 
