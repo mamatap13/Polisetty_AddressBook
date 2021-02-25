@@ -1,15 +1,17 @@
 package com.company;
-
 import java.io.*;
 
-/*
-*  main AddressBookApplication: purpose is to invoke some methods of the Menu class
-* */
+/**
+ *  purpose is to invoke some methods of the Menu class
+ */
 public class AddressBookApplication {
+
+    //global variable
+    private static AddressBook ab = new AddressBook();
+
     public static void main(String [] args) throws IOException{
 
-        // instance of AddressBook
-        //AddressBook ab = new AddressBook();
+        Menu.prompt_Menu();
         //initAddressBookExercise(ab);
 
 
@@ -29,7 +31,6 @@ public class AddressBookApplication {
 
     public static void init(String filename) throws IOException {
 
-        AddressBook ab = new AddressBook();
         FileReader file_input = new FileReader(filename);
 
         BufferedReader BR = new BufferedReader(file_input);

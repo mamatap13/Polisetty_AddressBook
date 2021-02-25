@@ -1,10 +1,30 @@
 package com.company;
-
+import java.io.*;
+import java.util.Scanner;
 /**
- * Menu class has static methods to prompt to standard output information about a Contact like name, etc.
+ * @author Mamata Polisetty
+ * @since 2021-16-02
+ *
+ * contains static methods to prompt to standard output information about a Contact like name, etc.
  */
-
 public class Menu {
+
+
+    public static int prompt_Menu() {
+        System.out.println("**************************************");
+        System.out.println("Please enter the number for your menu selection: ");
+        System.out.println("1 = Loading From File");
+        System.out.println("2 = Addition");
+        System.out.println("3 = Removal");
+        System.out.println("4 = Find");
+        System.out.println("5 = Listing");
+        System.out.println("6 = Quit");
+        System.out.println("**************************************");
+
+        Scanner input = new Scanner(System.in);
+        int userChoice = input.nextInt();
+        return userChoice;
+    }
 
     /**
      * generates a standard output prompt for the First Name to be entered
