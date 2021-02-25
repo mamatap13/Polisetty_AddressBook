@@ -1,8 +1,8 @@
 package com.company;
 
-/*
+/**
  * Menu class has static methods to prompt to standard output information about a Contact like name, etc.
- * */
+ */
 
 public class Menu {
 

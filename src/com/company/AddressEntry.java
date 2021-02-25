@@ -1,8 +1,14 @@
 package com.company;
-
+/**
+ * @author Mamata Polisetty
+ * * @since 2021-02-16
+ *
+ * This class represents a single Address/Contact information entry in the AddressBook
+ *
+ * */
 public class AddressEntry {
 
-    //instance variables
+    //class instance variables representing all the information in an AddressEntry contact
     private String firstName;
     private String lastName;
     private String street;
@@ -12,8 +18,12 @@ public class AddressEntry {
     private String phone;
     private String email;
 
+    //empty constructor
     public AddressEntry(){}
 
+    /**
+    * constructor that accepts a first name, last name, street, city, state, zipcode, phone, and email
+    * */
     public AddressEntry(String firstName, String lastName, String street, String city,
                         String state, int zip, String phone, String email) {
         this.firstName = firstName;
@@ -26,6 +36,9 @@ public class AddressEntry {
         this.email = email;
     }
 
+    /*
+    * @return string with formatted Address entry
+    * */
     public String toString() {
         return "First Name: " + firstName
                 + "\nLast Name: " + lastName

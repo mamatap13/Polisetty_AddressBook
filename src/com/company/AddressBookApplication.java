@@ -12,6 +12,7 @@ public class AddressBookApplication {
         //AddressBook ab = new AddressBook();
         //initAddressBookExercise(ab);
 
+
         init("AddressInputDataFile.txt");
 
        // ab.list();

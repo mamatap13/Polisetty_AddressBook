@@ -12,9 +12,21 @@ public class AddressBook {
         }
     }
 
+    public void remove(String lastName) {
+
+    }
+
     // add addressEntry to addressEntryList
     public void add(AddressEntry addressEntry){
         addressEntryList.add(addressEntry);
+    }
+
+    //public void readFromFile(File filename) {
+
+    //}
+
+    public void find(String startOf_lastName) {
+
     }
 
 }
