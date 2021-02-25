@@ -15,7 +15,7 @@ public class AddressBook {
     ArrayList<AddressEntry> addressEntryList = new ArrayList<>();
 
     /**
-     * reads info from user file, creates an AddressEntry object,
+     * loads entry from user's file, creates an AddressEntry object,
      * and adds the new object to the AddressBook ArrayList
      *
      * @param filename filename string entered by user
@@ -68,6 +68,16 @@ public class AddressBook {
 
 
     public void find(String startOf_lastName) {
+        //create new arraylist
+        ArrayList<AddressEntry> searchArray = new ArrayList<>();
+
+        //brute-force method: check if every addressEntry starts with the start of user's last name entry
+        //if yes, add to new arraylist
+        for(AddressEntry addressEntry: addressEntryList) {
+            if(addressEntry.getLastName().toLowerCase().startsWith(startOf_lastName.toLowerCase())) {
+                searchArray.add(addressEntry);
+            }
+        }
 
     }
 
