@@ -3,6 +3,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  * @author Mamata Polisetty
  * @since 2021-02-24
@@ -11,7 +13,6 @@ import java.util.ArrayList;
 public class AddressBook {
 
     //global instance variable
-    AddressBook addressBook = new AddressBook();
     ArrayList<AddressEntry> addressEntryList = new ArrayList<>();
 
     /**
@@ -21,6 +22,7 @@ public class AddressBook {
      * @param filename filename string entered by user
      */
     public void readFromFile(String filename) {
+
         try {
             FileReader fileInput = new FileReader(filename);
             BufferedReader bufferedReader = new BufferedReader(fileInput);
@@ -28,7 +30,7 @@ public class AddressBook {
 
             //read each line of the user's file
             //add to each corresponding element of a new AddressEntry object
-            while((line = bufferedReader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null) {
 
                 //AddressEntry has 7 elements: first name, last name, street, city, zipcode, phone number, and email
                 //first element is the first line of user's file
@@ -38,16 +40,23 @@ public class AddressBook {
                         bufferedReader.readLine(), bufferedReader.readLine());
 
                 //add newContact object to addressEntryList array
-                addressBook.add(newContact);
+                add(newContact);
             }
             bufferedReader.close();
             fileInput.close();
         }
         //catch exception if entered filename is invalid
         catch(IOException exception) {
-            System.out.println(exception);
+            System.out.println("Invalid filename");
         }
+        list();
     }
+
+    // add addressEntry to addressEntryList
+    public void add(AddressEntry addressEntry){
+        addressEntryList.add(addressEntry);
+    }
+
 
     // print every addressEntry in addressEntryList
     public void list(){
@@ -58,11 +67,6 @@ public class AddressBook {
 
     public void remove(String lastName) {
 
-    }
-
-    // add addressEntry to addressEntryList
-    public void add(AddressEntry addressEntry){
-        addressEntryList.add(addressEntry);
     }
 
 

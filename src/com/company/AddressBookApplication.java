@@ -10,9 +10,10 @@ import java.util.Scanner;
 public class AddressBookApplication {
 
     //global variable
-    private static AddressBook ab = new AddressBook();
+
 
     public static void main(String [] args) throws IOException{
+        AddressBook ab = new AddressBook();
 
         Scanner userInput = new Scanner(System.in);
         //stores prompt_Menu response from user
@@ -22,20 +23,22 @@ public class AddressBookApplication {
         while(userChoice != 6) {
             switch(userChoice) {
                 case 1:
-                    //prompt user for filename and call readFromFile method
-                    System.out.println("Enter the filename: ");
-                    String filename = userInput.nextLine();
+                    String filename = Menu.prompt_FileName();
                     ab.readFromFile(filename);
                     break;
 
                 case 2:
-                    ab.add();
+                    AddressEntry newContact = new AddressEntry(Menu.prompt_FirstName(), Menu.prompt_LastName(),
+                                                Menu.prompt_Street(), Menu.prompt_City(), Menu.prompt_State(),
+                                                Menu.prompt_Zip(), Menu.prompt_Telephone(), Menu.prompt_Email());
+                    ab.add(newContact);
+
                     break;
                 case 3:
-                    ab.remove();
+                    //ab.remove();
                     break;
                 case 4:
-                    ab.find();
+                   // ab.find();
                     break;
                 case 5:
                     ab.list();

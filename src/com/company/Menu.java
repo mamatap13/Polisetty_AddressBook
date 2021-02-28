@@ -1,4 +1,5 @@
 package com.company;
+import java.io.IOException;
 import java.util.Scanner;
 /**
  * @author Mamata Polisetty
@@ -91,7 +92,7 @@ public class Menu {
      * @return user's string input for Telephone
      */
     public static String prompt_Telephone() {
-        System.out.println("First Name: ");
+        System.out.println("Telephone: ");
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
@@ -105,4 +106,11 @@ public class Menu {
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
+
+    public static String prompt_FileName(){
+        System.out.println("Enter the filename: ");
+        Scanner input = new Scanner(System.in);
+        return input.nextLine();
+    }
+
 }
