@@ -22,34 +22,49 @@ public class AddressBookApplication {
         //while user does not quit(enters 6), keep calling prompt_Menu
         while(userChoice != 6) {
             switch(userChoice) {
-                case 1:
+                case 1: //1. Load from file
+                    //Prompt user for file name
                     String filename = Menu.prompt_FileName();
+                    //Call method to read and load contacts into AddressBook ab
                     ab.readFromFile(filename);
                     break;
 
-                case 2:
-                    AddressEntry newContact = new AddressEntry(Menu.prompt_FirstName(), Menu.prompt_LastName(),
-                                                Menu.prompt_Street(), Menu.prompt_City(), Menu.prompt_State(),
-                                                Menu.prompt_Zip(), Menu.prompt_Telephone(), Menu.prompt_Email());
+                case 2: //2. Addition
+                    //Create new contact constructor and add to AddressBook ab
+                    AddressEntry newContact = new AddressEntry(Menu.prompt_FirstName(),
+                            Menu.prompt_LastName(),
+                            Menu.prompt_Street(),
+                            Menu.prompt_City(),
+                            Menu.prompt_State(),
+                            Menu.prompt_Zip(),
+                            Menu.prompt_Telephone(),
+                            Menu.prompt_Email());
                     ab.add(newContact);
 
                     break;
-                case 3:
-                    //ab.remove();
+                case 3: // 3. Removal
+                    //Prompt user for last name of contact to remove
+                    String lastName = Menu.prompt_LastName();
+                    ab.remove(lastName);
                     break;
-                case 4:
-                   // ab.find();
+
+                case 4: // 4. Find
+                    String startOf_LastName = Menu.prompt_Find();
+                    ab.find(startOf_LastName);
                     break;
-                case 5:
+
+                case 5: // 5. Listing
+                    //List all contacts in AddressBook ab
                     ab.list();
                     break;
+
                 default:
                     //invalid response
                     System.out.println("Try again!");
             }
             userChoice = Menu.prompt_Menu();
         }
-        //print if user quits(enters 6)
+        // 6. Quit
         System.out.println("Goodbye!");
 
 

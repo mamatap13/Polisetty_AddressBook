@@ -32,7 +32,7 @@ public class Menu {
      * @return user's string input for First Name
      */
     public static String prompt_FirstName() {
-        System.out.println("First Name: ");
+        System.out.print("First Name: ");
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
@@ -42,7 +42,7 @@ public class Menu {
      * @return user's string input for Last Name
      */
     public static String prompt_LastName(){
-        System.out.println("Last Name: ");
+        System.out.print("Last Name: ");
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
@@ -52,7 +52,7 @@ public class Menu {
      * @return user's string input for Street
      */
     public static String prompt_Street() {
-        System.out.println("Street: ");
+        System.out.print("Street: ");
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
@@ -62,7 +62,7 @@ public class Menu {
      * @return user's string input for City
      */
     public static String prompt_City(){
-        System.out.println("City: ");
+        System.out.print("City: ");
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
@@ -72,7 +72,7 @@ public class Menu {
      * @return user's string input for State
      */
     public static String prompt_State() {
-        System.out.println("State: ");
+        System.out.print("State: ");
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
@@ -82,7 +82,7 @@ public class Menu {
      * @return user's int input for Zip
      */
     public static int prompt_Zip(){
-        System.out.println("Zip: ");
+        System.out.print("Zip: ");
         Scanner input = new Scanner(System.in);
         return input.nextInt();
     }
@@ -92,7 +92,7 @@ public class Menu {
      * @return user's string input for Telephone
      */
     public static String prompt_Telephone() {
-        System.out.println("Telephone: ");
+        System.out.print("Telephone[000-000-0000]: ");
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
@@ -102,15 +102,40 @@ public class Menu {
      * @return user's string input for email
      */
     public static String prompt_Email(){
-        System.out.println("Email: ");
+        System.out.print("Email: ");
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
 
+    /**
+     * generates a standard output prompt for the Filename to be entered
+     * @return user's string input for filename
+     */
     public static String prompt_FileName(){
         System.out.println("Enter the filename: ");
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
+
+    /**
+     * generates a standard output prompt for the Last Name for removal to be entered
+     * @return user's string input for last name of contact to remove
+     */
+    public static String prompt_Removal(){
+        System.out.println("Enter the last name of the contact to remove: ");
+        Scanner input = new Scanner(System.in);
+        return input.nextLine();
+    }
+
+    /**
+     * generates a standard output prompt for start of the Last Name to be entered
+     * @return user's string input for last name of contact to find
+     */
+    public static String prompt_Find(){
+        System.out.println("Enter in all or the start of the Last Name of the contact to find: ");
+        Scanner input = new Scanner(System.in);
+        return input.nextLine();
+    }
+
 
 }
