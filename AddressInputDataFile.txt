@@ -14,3 +14,27 @@ Ca
 99999
 bg@gmail.com
 415-389-1239
+Mamata
+Polisetty
+11th Ct
+Sammamish
+WA
+98074
+mpolisetty@csueastbay.edu
+425-293-1039
+Jill
+Biden
+1600 Pennsylvania Ave
+Washington D.C.
+MD
+12345
+drbiden@teacher.edu
+123-456-7890
+Jane
+Doe
+Banana Street
+Orange
+Ca
+90210
+lost@missing.ord
+111-111-1111

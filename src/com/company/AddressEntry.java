@@ -27,7 +27,7 @@ public class AddressEntry {
     * accepts a first name, last name, street, city, state, zipcode, phone, and email
     */
     public AddressEntry(String firstName, String lastName, String street, String city,
-                        String state, int zip, String phone, String email) {
+                        String state, int zip, String email, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.street = street;

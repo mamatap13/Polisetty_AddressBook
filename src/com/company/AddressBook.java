@@ -48,7 +48,7 @@ public class AddressBook {
                         bufferedReader.readLine(),                     //city
                         bufferedReader.readLine(),                     //state
                         Integer.parseInt(bufferedReader.readLine()),   //zip
-                        bufferedReader.readLine(),                     //phone number
+                        bufferedReader.readLine(),                     //phone
                         bufferedReader.readLine());                    //email
 
                 // Add newContact object to addressEntryList

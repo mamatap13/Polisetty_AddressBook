@@ -1,7 +1,6 @@
 package com.company;
 import java.io.*;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Scanner;
 /**
  * @author Mamata Polisetty
