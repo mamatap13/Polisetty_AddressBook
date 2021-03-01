@@ -1,11 +1,20 @@
 package com.company;
 import java.io.*;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 /**
  * @author Mamata Polisetty
  * @since 2021-02-24
  *
- * purpose is to invoke some methods of the Menu class
+ * This class is used to display menu option to the user.
+ * Includes:
+ *    1 = Loading
+ *    2 = Addition
+ *    3 = Removal
+ *    4 = Find
+ *    5 = Listing
+ *    6 = Quit
  */
 public class AddressBookApplication {
 
@@ -44,13 +53,30 @@ public class AddressBookApplication {
                     break;
                 case 3: // 3. Removal
                     //Prompt user for last name of contact to remove
-                    String lastName = Menu.prompt_LastName();
+                    String lastName = Menu.prompt_Removal();
                     ab.remove(lastName);
+
                     break;
 
                 case 4: // 4. Find
                     String startOf_LastName = Menu.prompt_Find();
-                    ab.find(startOf_LastName);
+
+                    // Find method returns a list of address entries
+                    List<AddressEntry> entryList = ab.find(startOf_LastName);
+
+                    // If list is empty, print "no entries found"
+                    // Else, print address entries (numbered)
+                    if(entryList.size() == 0) {
+                        System.out.println("No entries were found with last name starting with: " + startOf_LastName);
+                    } else {
+                        System.out.println("The following were found in the address book for the last name starting with " +
+                                startOf_LastName);
+                        int i = 1;
+                        for(AddressEntry entry : entryList) {
+                            System.out.println(i + ": " + entry);
+                            i++;
+                        }
+                    }
                     break;
 
                 case 5: // 5. Listing
@@ -67,55 +93,7 @@ public class AddressBookApplication {
         // 6. Quit
         System.out.println("Goodbye!");
 
-
-        //initAddressBookExercise(ab);
-        //init("AddressInputDataFile.txt");
-
-       // ab.list();
-        //simply invokes static methods of the Menu class
-        //Menu.prompt_FirstName();
-        //Menu.prompt_LastName();
-        //Menu.prompt_Street();
-        //Menu.prompt_City();
-        //Menu.prompt_State();
-        //Menu.prompt_Zip();
-        //Menu.prompt_Telephone();
-        //Menu.prompt_Email();
     }
-
-//    public static void init(String filename) throws IOException {
-//
-//        FileReader file_input = new FileReader(filename);
-//
-//        BufferedReader BR = new BufferedReader(file_input);
-//        String line;
-//        while((line = BR.readLine()) != null) {
-//            AddressEntry newContact = new AddressEntry(line, BR.readLine(), BR.readLine(), BR.readLine(),
-//                    BR.readLine(), Integer.valueOf(BR.readLine()).intValue(), BR.readLine(), BR.readLine());
-//            ab.add(newContact);
-//        }
-//
-//        BR.close();
-//        file_input.close();
-//
-//        ab.list();
-//    }
-//    public static void initAddressBookExercise(AddressBook ab){
-//
-//        // instances of AddressEntry
-//        AddressEntry contact1 = new AddressEntry("Mamata", "Polisetty", "Emerald Isle Lane",
-//                "CA", "San Jose", 95135, "4082748447", "mpolisetty@horizon.csueastbay.com" );
-//
-//        AddressEntry contact2 = new AddressEntry("Anuraag", "Polisetty", "11th Court",
-//                "Sammamish", "WA", 98074, "4082036037", "raja1729@hotmail.com");
-//
-//        // add contacts to AddressBook instance ab
-//        ab.add(contact1);
-//        ab.add(contact2);
-//
-//        // list addressEntrys in addressEntryList
-//       // ab.list();
-//    }
 }
 
 

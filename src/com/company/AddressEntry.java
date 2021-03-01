@@ -42,10 +42,10 @@ public class AddressEntry {
     * @return string with formatted Address entry
     */
     public String toString() {
-        return firstName + " " + lastName + "\n"
-                + street + "\n"
-                + city + ", " + state + " " + zip + "\n"
-                + email + "\n"
+        return firstName + " " + lastName + "\n  "
+                + street + "\n  "
+                + city + ", " + state + " " + zip + "\n  "
+                + email + "\n  "
                 + phone + "\n";
     }
 

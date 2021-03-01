@@ -137,5 +137,25 @@ public class Menu {
         return input.nextLine();
     }
 
+    /**
+     * generates a standard output prompt for a Number to be entered
+     * @return user's integer input for number of entry to remove
+     */
+    public static int prompt_Number(){
+        System.out.println("Select number of the entry you wish to remove: ");
+        Scanner input = new Scanner(System.in);
+        return input.nextInt();
+    }
+
+    /**
+     * generates a standard output prompt for a 'y' or 'n' to be entered
+     * @return user's string input for a 'y' or 'n'
+     */
+    public static String prompt_YorN(){
+        System.out.println("Hit 'y' to remove or 'n' to return to the main menu." );
+        Scanner input = new Scanner(System.in);
+        return input.nextLine();
+    }
+
 
 }
