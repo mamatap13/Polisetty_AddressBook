@@ -18,9 +18,6 @@ import java.util.Scanner;
  */
 public class AddressBookApplication {
 
-    //global variable
-
-
     public static void main(String [] args) throws IOException{
         AddressBook ab = new AddressBook();
 

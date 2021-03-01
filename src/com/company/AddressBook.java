@@ -7,8 +7,11 @@ import java.util.*;
 /**
  * @author Mamata Polisetty
  * @since 2021-02-24
+ *
+ * This class represents and contains a possibly ever growing and/or shrinking "list" of AddressEntries.
+ * It contains various methods: readFromFile(filename), add(addressEntry), remove(lastName), find(startOf_lastName), list()
+ *
  */
-
 public class AddressBook {
 
     // Global instance of TreeMap
@@ -20,8 +23,8 @@ public class AddressBook {
     int numOfEntries;
 
     /**
-     * Loads entry from user's file, creates an AddressEntry object,
-     * and adds the new object to the AddressBook ArrayList
+     * Loads entry from user's file, creates an AddressEntry object for each new contact,
+     * and adds the new object to the AddressBook TreeMap
      *
      * @param filename filename string entered by user
      */
@@ -32,13 +35,13 @@ public class AddressBook {
             BufferedReader bufferedReader = new BufferedReader(fileInput);
             String line;
 
-            //read each line of the user's file
-            //add to each corresponding element of a new AddressEntry object
+            // Read each line of the user's file
+            // Add to each corresponding element of a new AddressEntry object
             while ((line = bufferedReader.readLine()) != null) {
 
-                //AddressEntry has 8 elements: first name, last name, street, city, zipcode, phone number, and email
-                //first element is the first line of user's file
-                //sixth element(zipcode) is converted into an Integer value
+                // AddressEntry has 8 elements: first name, last name, street, city, zipcode, phone number, and email
+                // First element is the first line of user's file
+                // Sixth element(zipcode) is converted into an Integer value
                 AddressEntry newContact = new AddressEntry(line,       //first name
                         bufferedReader.readLine(),                     //last name
                         bufferedReader.readLine(),                     //street
@@ -48,14 +51,14 @@ public class AddressBook {
                         bufferedReader.readLine(),                     //phone number
                         bufferedReader.readLine());                    //email
 
-                //add newContact object to addressEntryList array
+                // Add newContact object to addressEntryList
                 add(newContact);
                 numOfEntries++;
             }
             bufferedReader.close();
             fileInput.close();
         }
-        //catch exception if entered filename is invalid
+        // Catch exception if entered filename is invalid
         catch(IOException exception) {
             System.out.println("Invalid filename");
         }
@@ -65,25 +68,24 @@ public class AddressBook {
     }
 
     /**
-     * Add entry to the ArrayList addressEntryList
+     * Add entry to addressEntryList
      *
      * @param addressEntry new contact entry
      */
-    // add addressEntry to addressEntryList
     public void add(AddressEntry addressEntry){
-        // check if lastname exists in addressEntryList
+        // Check if lastname exists in addressEntryList
         String lastName = addressEntry.getLastName();
 
-
+        // New TreeMap represents values of addressEntryList
         TreeMap<String, AddressEntry> innerMap = addressEntryList.get(lastName);
 
-        // if key:lastName does not exist
+        // If key:lastName does not exist
         if (innerMap == null) {
-            // create new treemap for that lastName
+            // Create new treemap for that lastName
             innerMap = new TreeMap<>(Comparator.comparing(String::toLowerCase));
-            // add new contact (key:firstName, value:contact)
+            // Add new contact (key:firstName, value:contact)
             innerMap.put(addressEntry.getFirstName(), addressEntry);
-            // add treemap to outermap [key:lastName, value:(key:firstName, value:contact)]
+            // Add treemap to outermap [key:lastName, value:(key:firstName, value:contact)]
             addressEntryList.put(addressEntry.getLastName(), innerMap);
             numOfTotalEntries++;
 
@@ -91,7 +93,7 @@ public class AddressBook {
             // If key:lastName exists
             // Check if contact exists in innerMap
             AddressEntry existingEntry = innerMap.get(addressEntry.getFirstName());
-            // If contact does not exist
+            // If contact does not exist, add new contact to innerMap
             if(existingEntry == null) {
                 innerMap.put(addressEntry.getFirstName(), addressEntry);
                 numOfTotalEntries++;
@@ -101,40 +103,54 @@ public class AddressBook {
 
     }
 
+    /**
+     * Removes entry from addressEntryList
+     *
+     * @param lastName last name of contact to remove
+     */
     public void remove(String lastName) {
 
+        // New list made up of address entries with the same last name
         List<AddressEntry> removalList = find(lastName);
+        // New Map made up of address entries with the same last name
         Map<String, AddressEntry> innerMap = addressEntryList.get(lastName);
 
-
+        // If removalList is empty
         if(removalList.size() == 0) {
             System.out.println("No entries were found with last name: " + lastName);
 
-        } else if(removalList.size() == 1) {
+        } else if(removalList.size() == 1) { // If removalList has 1 entry only
+
             System.out.println("The following 1 entry was found in the address book.");
+            // Place zeroth element (only element) into a new address entry object
             AddressEntry entry = removalList.get(0);
+            // Print entry
             System.out.println("  " + entry);
 
-            // Ask user y/n to remove, "n" prompts main menu in AddressBookApplication.java
+            // Ask user yes/no to remove, "n" prompts main menu in AddressBookApplication.java
             String YorN = Menu.prompt_YorN();
+            // If user enters an invalid response
             while(!YorN.equalsIgnoreCase("n") && !YorN.equalsIgnoreCase("y")) {
                 System.out.println("Try Again!");
                 YorN = Menu.prompt_YorN();
             }
+            // Go thru with removal if user enters "y"
             if(YorN.equalsIgnoreCase("y")) {
                 innerMap.remove(entry.getFirstName());
                 System.out.println("You have successfully removed the " + entry.getFirstName() + " "
                         + entry.getLastName() + " contact!");
             }
 
-        } else {
+        } else { // If removalList has more than 1 entry
             System.out.println("The following " + removalList.size() + " entries were found in the address book.");
             int i = 1;
+            // Print all entries
             for(AddressEntry addressEntry : innerMap.values()) {
                 System.out.println(i + ": " + addressEntry);
                 i++;
             }
 
+            // Prompt user to choose which entry to remove
             int numToRemove = Menu.prompt_Number();
 
             // Check that numToRemove is valid
@@ -143,8 +159,10 @@ public class AddressBook {
                 numToRemove = Menu.prompt_Number();
             }
 
+            // Place chosen address into new addressEntry object
             AddressEntry entry = removalList.get(numToRemove - 1);
 
+            // Remove entry
             innerMap.remove(entry.getFirstName());
             System.out.println("You have successfully removed the " + entry.getFirstName() + " "
                     + entry.getLastName() + " contact!");
@@ -153,10 +171,16 @@ public class AddressBook {
 
     }
 
+    /**
+     * Finds entry from addressEntryList
+     *
+     * @param startOf_lastName start of last name of contact to find
+     */
     public List<AddressEntry> find(String startOf_lastName) {
 
+        // New list and map to store found entries
         List<AddressEntry> result = new ArrayList<>();
-        TreeMap<String, AddressEntry> innerMap = new TreeMap<>();
+        TreeMap<String, AddressEntry> innerMap;
 
         // Set of all keys(lastNames)
         Set<String> lastNames = addressEntryList.keySet();
@@ -167,24 +191,26 @@ public class AddressBook {
                 innerMap = addressEntryList.get(key);
 
                 // Print all entries
-                for (AddressEntry addressEntry : innerMap.values()) {
-                    result.add(addressEntry);
-                }
+                result.addAll(innerMap.values());
             }
         }
         return result;
 
     }
-    // print every addressEntry in addressEntryList
+    /**
+     * List all entries from addressEntryList
+     */
     public void list(){
         int i = 1;
-        for(TreeMap<String, AddressEntry > lastName : addressEntryList.values() ) {
+        // Print all entries, numbered
+        for(TreeMap<String, AddressEntry> lastName : addressEntryList.values() ) {
             for(AddressEntry addressEntry : lastName.values()) {
                 System.out.println(i + ": " + addressEntry);
                 i++;
             }
         }
-
+        // Print total number of addresses (i - 1 = count of entries)
+        System.out.println("Currently " + (i - 1) + " entries in the Address Book.");
     }
 
 }

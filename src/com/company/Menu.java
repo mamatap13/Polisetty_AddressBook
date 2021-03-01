@@ -1,17 +1,18 @@
 package com.company;
-import java.io.IOException;
 import java.util.Scanner;
 /**
  * @author Mamata Polisetty
  * @since 2021-02-24
  *
- * contains static methods to prompt to standard output information about a Contact like name, etc.
+ * This class contains static methods to prompt to standard output information about a Contact.
+ *
  */
 public class Menu {
 
-
-
-
+    /**
+     * generates a standard output prompt for the Menu of the Application
+     * @return user's string input for menu selection
+     */
     public static int prompt_Menu() {
         System.out.println("*************************************************");
         System.out.println("Please enter the number for your menu selection: ");
